@@ -33,11 +33,17 @@ public class Samurai : MonoBehaviour
 
         if(movement > 0)
         {
+            anim.SetBool("isRun", true);   
             transform.eulerAngles = new Vector3(0, 0, 0);
         }
         if(movement < 0)
         {
+            anim.SetBool("isRun", true);
             transform.eulerAngles = new Vector3(0, 180, 0);
+        }
+        if(movement == 0)
+        {
+            anim.SetBool("isRun", false);
         }
     }
 
@@ -47,6 +53,7 @@ public class Samurai : MonoBehaviour
         {
             if(isJump == false)
             {
+                anim.SetBool("isJump", true);
                 rig.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
                 isJump = true;
             }
@@ -58,6 +65,7 @@ public class Samurai : MonoBehaviour
         if (coll.gameObject.layer == 6)
         {
             isJump = false;
+            anim.SetBool("isJump", false);
         }
     }
 }
