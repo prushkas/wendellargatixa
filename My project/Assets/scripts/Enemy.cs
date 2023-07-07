@@ -5,7 +5,6 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public float speed;
-    private bool isRight;
 
     private Rigidbody2D rig;
    
@@ -13,7 +12,6 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
-        isRight = true;
     }
 
     // Update is called once per frame
@@ -24,9 +22,9 @@ public class Enemy : MonoBehaviour
     }
     public void Flip()
     {
-        ///isso embaixo é um operador ternario,significa que ele vai fazer uma verificação antes de definir um valor,
-        ///é como se fosse um if else de uma linha só,ou seja,ele vai verificar se o angulo y atual do inimigo é 0
-        ///se sim,então se torna 180,senão se torna 0
+        ///isso embaixo ï¿½ um operador ternario,significa que ele vai fazer uma verificaï¿½ï¿½o antes de definir um valor,
+        ///ï¿½ como se fosse um if else de uma linha sï¿½,ou seja,ele vai verificar se o angulo y atual do inimigo ï¿½ 0
+        ///se sim,entï¿½o se torna 180,senï¿½o se torna 0
         float angle = transform.eulerAngles.y == 0 ? 180 : 0;
         transform.eulerAngles = new Vector3(0, angle, 0);
     }
