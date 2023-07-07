@@ -7,10 +7,18 @@ public class Samurai : MonoBehaviour
 
     public float speed;
     public float jumpForce;
+    public float timeToExitAttack;
+
+    public GameObject hitBoxDaEspada;
+    public Transform hand;
+    
     private bool isJump;
+    private bool isAttacking;
 
     private Rigidbody2D rig;
     private Animator anim;
+
+    private float movement;
     
     // Start is called before the first frame update
     void Start()
@@ -22,13 +30,18 @@ public class Samurai : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
         Jump();
+        Espadada();
+    }
+
+    private void FixedUpdate()
+    {
+        Move();
     }
 
     void Move()
     {
-        float movement = Input.GetAxis("Horizontal");
+        movement = Input.GetAxis("Horizontal");
         rig.velocity = new Vector2(movement * speed, rig.velocity.y);
 
         if(movement > 0)
@@ -58,6 +71,37 @@ public class Samurai : MonoBehaviour
                 isJump = true;
             }
         }
+    }
+
+    void Espadada()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if(isAttacking == false)
+            {
+                isAttacking = true;
+                anim.SetBool("isAttack", true);
+                GameObject Golpe = Instantiate(hitBoxDaEspada, hand.position, hand.rotation);
+                Invoke(nameof(exitAttack),timeToExitAttack);
+
+
+                if(movement > 0)
+                {
+                    Golpe.transform.eulerAngles = new Vector3(0, 0, 0);
+                }
+
+                if(movement < 0)
+                {
+                    Golpe.transform.eulerAngles = new Vector3(0, 180, 0);
+                }
+            }
+        }
+    }
+
+    void exitAttack()
+    {
+        isAttacking = false;
+        anim.SetBool("isAttack", false);
     }
 
      void OnCollisionEnter2D(Collision2D coll)
