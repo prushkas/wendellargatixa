@@ -29,8 +29,5 @@ public class Enemy : MonoBehaviour
         transform.eulerAngles = new Vector3(0, angle, 0);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Destroy(gameObject);
-    }
+    
 }

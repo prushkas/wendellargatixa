@@ -5,6 +5,7 @@ using UnityEngine;
 public class Samurai : MonoBehaviour
 {
 
+    public int health;
     public float speed;
     public float jumpForce;
     public float timeToExitAttack;
@@ -12,11 +13,11 @@ public class Samurai : MonoBehaviour
     public GameObject hitBoxDaEspada;
     public Transform hand;
     
-    private bool isJump;
+    public bool isJump;
     private bool isAttacking;
 
     private Rigidbody2D rig;
-    private Animator anim;
+    public Animator anim;
 
     private float movement;
     
@@ -98,18 +99,20 @@ public class Samurai : MonoBehaviour
         }
     }
 
+    public void Damage(int dmg)
+    {
+        health -= dmg;
+
+        if (health <= 0)
+        {
+            //chama game over
+        }
+    }
+
     void exitAttack()
     {
         isAttacking = false;
         anim.SetBool("isAttack", false);
     }
-
-     void OnCollisionEnter2D(Collision2D coll)
-    {
-        if (coll.gameObject.layer == 6)
-        {
-            isJump = false;
-            anim.SetBool("isJump", false);
-        }
-    }
+    
 }
