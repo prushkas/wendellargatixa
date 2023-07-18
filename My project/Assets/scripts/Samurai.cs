@@ -5,7 +5,7 @@ using UnityEngine;
 public class Samurai : MonoBehaviour
 {
 
-    public int health;
+    public int health = 3;
     public float speed;
     public float jumpForce;
     public float timeToExitAttack;
@@ -26,6 +26,8 @@ public class Samurai : MonoBehaviour
     {
         rig = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        
+        GameController.instance.UpdateLives(health);
     }
 
     // Update is called once per frame
@@ -102,6 +104,8 @@ public class Samurai : MonoBehaviour
     public void Damage(int dmg)
     {
         health -= dmg;
+        GameController.instance.UpdateLives(health);
+        anim.SetTrigger("takingDamage");
 
         if (health <= 0)
         {

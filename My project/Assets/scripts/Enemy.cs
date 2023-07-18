@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public float speed;
+    public int damage = 1;
 
     private Rigidbody2D rig;
    
@@ -29,5 +31,11 @@ public class Enemy : MonoBehaviour
         transform.eulerAngles = new Vector3(0, angle, 0);
     }
 
-    
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<Samurai>().Damage(damage);
+        }
+    }
 }
