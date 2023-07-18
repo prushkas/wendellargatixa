@@ -114,14 +114,16 @@ public class Samurai : MonoBehaviour
 
         if (health <= 0)
         {
-            Death();
+            StartCoroutine(Death());
         }
     }
 
-    public void Death()
+    public IEnumerator Death()
     {
         transform.position = posInicial;
-        
+        yield return null;
+        health = 3;
+        GameController.instance.UpdateLives(health);
     }
 
     public void IncreaseLife(int value)

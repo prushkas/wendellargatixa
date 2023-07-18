@@ -10,7 +10,7 @@ public class Void : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<Samurai>().Death();
+            StartCoroutine(collision.gameObject.GetComponent<Samurai>().Death());
         }
         else
         {
