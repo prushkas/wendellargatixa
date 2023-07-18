@@ -113,6 +113,12 @@ public class Samurai : MonoBehaviour
         }
     }
 
+    public void IncreaseLife(int value)
+    {
+        health += value;
+        GameController.instance.UpdateLives(health);
+    }
+
     void exitAttack()
     {
         isAttacking = false;
