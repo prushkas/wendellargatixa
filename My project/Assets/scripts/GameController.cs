@@ -8,6 +8,9 @@ public class GameController : MonoBehaviour
 
     public TMPro.TextMeshProUGUI healtText;
 
+    public int score;
+    public TMPro.TextMeshProUGUI scoreText;
+
     public static GameController instance;
     
     // Start is called before the first frame update
@@ -20,6 +23,12 @@ public class GameController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void UptadeScore(int value)
+    {
+        score += value;
+        scoreText.text = score.ToString();
     }
 
     public void UpdateLives(int value)
