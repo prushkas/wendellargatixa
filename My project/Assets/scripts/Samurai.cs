@@ -10,6 +10,8 @@ public class Samurai : MonoBehaviour
     public float jumpForce;
     public float timeToExitAttack;
 
+    public Vector3 posInicial;
+
     public GameObject hitBoxDaEspada;
     public Transform hand;
     
@@ -24,6 +26,9 @@ public class Samurai : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        posInicial = new Vector3(-1, -1, 0);
+        transform.position = posInicial;
+        
         rig = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         
@@ -109,8 +114,14 @@ public class Samurai : MonoBehaviour
 
         if (health <= 0)
         {
-            //chama game over
+            Death();
         }
+    }
+
+    public void Death()
+    {
+        transform.position = posInicial;
+        
     }
 
     public void IncreaseLife(int value)
