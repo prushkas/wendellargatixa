@@ -9,6 +9,7 @@ public class Samurai : MonoBehaviour
     public float speed;
     public float jumpForce;
     public float timeToExitAttack;
+    public int mainLife;
 
     public Vector3 posInicial;
 
@@ -26,6 +27,8 @@ public class Samurai : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        mainLife = 3;
+        
         posInicial = new Vector3(-1, -1, 0);
         transform.position = posInicial;
         
@@ -33,6 +36,8 @@ public class Samurai : MonoBehaviour
         anim = GetComponent<Animator>();
         
         GameController.instance.UpdateLives(health);
+        GameController.instance.UpdateMainLives(mainLife);
+        
     }
 
     // Update is called once per frame
@@ -115,6 +120,12 @@ public class Samurai : MonoBehaviour
         if (health <= 0)
         {
             StartCoroutine(Death());
+            mainLife--;
+            GameController.instance.UpdateMainLives(mainLife);
+            if (mainLife <= 0)
+            {
+                GameController.instance.GameOver();
+            }
         }
     }
 
@@ -137,5 +148,6 @@ public class Samurai : MonoBehaviour
         isAttacking = false;
         anim.SetBool("isAttack", false);
     }
+    
     
 }
