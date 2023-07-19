@@ -87,4 +87,9 @@ public class GameController : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+
+    public void VoltarMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
