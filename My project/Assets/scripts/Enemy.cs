@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
 {
     public float speed;
     public int damage = 1;
+    
 
     private Rigidbody2D rig;
    
@@ -35,6 +36,7 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            GameController.instance.EnemyDestroySFX();
             collision.gameObject.GetComponent<Samurai>().Damage(damage);
         }
     }

@@ -15,6 +15,7 @@ public class Samurai : MonoBehaviour
 
     public GameObject hitBoxDaEspada;
     public Transform hand;
+    public AudioSource sound;
     
     public bool isJump;
     private bool isAttacking;
@@ -34,6 +35,7 @@ public class Samurai : MonoBehaviour
         
         rig = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        sound = GetComponent<AudioSource>();
         
         GameController.instance.UpdateLives(health);
         GameController.instance.UpdateMainLives(mainLife);
@@ -79,6 +81,7 @@ public class Samurai : MonoBehaviour
         {
             if(isJump == false)
             {
+                sound.Play();
                 anim.SetBool("isJump", true);
                 rig.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
                 isJump = true;

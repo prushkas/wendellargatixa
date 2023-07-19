@@ -22,6 +22,8 @@ public class GameController : MonoBehaviour
     public static GameController instance;
 
     private bool isPaused;
+
+    public AudioSource explosaoFodaMonstraKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK;
     
     // Start is called before the first frame update
     void Awake()
@@ -91,5 +93,10 @@ public class GameController : MonoBehaviour
     public void VoltarMenu()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void EnemyDestroySFX()
+    {
+        explosaoFodaMonstraKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK.Play();
     }
 }
