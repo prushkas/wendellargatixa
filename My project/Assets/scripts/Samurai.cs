@@ -97,20 +97,25 @@ public class Samurai : MonoBehaviour
             {
                 isAttacking = true;
                 anim.SetBool("isAttack", true);
-                GameObject Golpe = Instantiate(hitBoxDaEspada, hand.position, hand.rotation);
-                Invoke(nameof(exitAttack),timeToExitAttack);
-
-
-                if(movement > 0)
-                {
-                    Golpe.transform.eulerAngles = new Vector3(0, 0, 0);
-                }
-
-                if(movement < 0)
-                {
-                    Golpe.transform.eulerAngles = new Vector3(0, 180, 0);
-                }
+                
             }
+        }
+    }
+    
+    public void SpawnEspadaHitbox()
+    {
+        GameObject Golpe = Instantiate(hitBoxDaEspada, hand.position, hand.rotation);
+        Invoke(nameof(exitAttack),timeToExitAttack);
+    
+    
+        if(movement > 0)
+        {
+            Golpe.transform.eulerAngles = new Vector3(0, 0, 0); 
+        }
+    
+        if(movement < 0)
+        {
+            Golpe.transform.eulerAngles = new Vector3(0, 180, 0);
         }
     }
 
